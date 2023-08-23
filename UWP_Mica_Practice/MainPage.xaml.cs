@@ -1,7 +1,7 @@
-﻿using Windows.ApplicationModel.Core;
-using System;
-using System.Windows;
+﻿using System;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -100,7 +100,7 @@ namespace UWP_Mica_Practice {
             }
         }
 
-        private void NavigationViewControl_OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args) {
+        private async void NavigationViewControl_OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args) {
             if (args.IsSettingsInvoked) {
                 contentFrame.Navigate(typeof(View.Home));
                 return;
@@ -109,7 +109,9 @@ namespace UWP_Mica_Practice {
             switch (args.InvokedItemContainer.Tag) {
                 case "_home":
                     contentFrame.Navigate(typeof(View.Home));
-                    return;
+                    var dialog = new MessageDialog("Test");
+                    await dialog.ShowAsync();
+                    break;
             }
         }
     }
